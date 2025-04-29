@@ -1,13 +1,202 @@
-body {
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --bg: #e3e4e8;
+  --fg: #17181c;
+  --input: #ffffff;
+  --primary: #255ff4;
+  --dur: 0.8s;
+  font-size: 14px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17181c;
+    --fg: #e3e4e8;
+    --input: #2e3138;
+    --primary: #5583f6;
+  }
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  color: var(--fg);
+  background-color: var(--bg);
+  padding: 20px;
+  display: block;
+  justify-content: center;
+}
+
+.container {
+  max-width: 800px;
+  background: var(--input);
+  margin: 2rem auto; /* centers the container */
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+}
+form {
+  position: relative;
+  max-width: 18em;
+  margin: 0 auto 20px;
+}
+
+input[type="search"] {
+  width: 2.5em;
+  height: 2.5em;
+  padding-left: 2em;
+  background: var(--input) url('data:image/svg+xml;utf8,<svg fill="%23666" height="16" viewBox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"/></svg>') no-repeat 0.5em center;
+  background-size: 1em;
+  border-radius: 50px;
+  box-shadow: 0 0 0 0.2em inset;
+  caret-color: var(--primary);
+  transition: all 0.5s ease;
+  border: none;
+  color: var(--fg);
+  font-size: 14px;
+  outline: none;
+}
+
+input[type="search"]:focus,
+input[type="search"]:valid {
+  width: 100%;
+  padding: 0.5em 1em 0.5em 2.5em;
+  border-radius: 8px;
+  background-color: var(--input);
+  box-shadow: none;
+}
+
+input:focus + .caret,
+input:valid + .caret {
+  animation: handleToCaret var(--dur) linear forwards;
+}
+
+.caret {
+  background: currentColor;
+  border-radius: 0 0 0.125em 0.125em;
+  width: 0.25em;
+  height: 1em;
+  transform: translate(0, -1em) rotate(-45deg) translate(0, 0.875em);
+  transform-origin: 50% 0;
+  transition: 0.2s ease;
+  margin-bottom: -0.6em;
+}
+
+@keyframes showCaret {
+  from {
+    caret-color: transparent;
+  }
+  to {
+    caret-color: var(--primary);
+  }
+}
+
+@keyframes handleToCaret {
+  0% {
+    background: currentColor;
+    transform: translate(0, -1em) rotate(-45deg) translate(0, 0.875em);
+  }
+  25% {
+    transform: translate(0, -1em) rotate(-180deg) translate(0, 0.875em);
+  }
+  50% {
+    background: var(--primary);
+    transform: translate(0, -1em) rotate(-180deg) translate(6.5em, 2.5em);
+  }
+  100% {
+    background: transparent;
+    transform: translate(0, -1em) rotate(-180deg) translate(6.5em, -0.25em);
+    height: 1.5em;
+    width: 1px;
+  }
+}
+
+/* Table */
+.table-responsive {
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 6px 8px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+}
+
+/* Form inputs */
+.form-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.form-group {
+  flex: 1 1 25%;
+  min-width: 140px;
+}
+
+.form-group span {
+  font-size: 13px;
+  display: block;
+  margin-bottom: 3px;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="number"] {
+  width: 100%;
+  padding: 5px 8px;
+  font-size: 13px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: var(--input);
+  color: var(--fg);
+}
+
+button.btn {
+  padding: 5px 10px;
+  font-size: 13px;
+  border-radius: 4px;
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+button.btn:hover {
+  background: #1e40af;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 6px;
+}
+
+.pagination li a {
+  font-size: 12px;
+  padding: 5px 8px;
+  background: #ddd;
+  color: #333;
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+.pagination li a.active,
+.pagination li a:hover {
+  background: var(--primary);
+  color: white;
 }
