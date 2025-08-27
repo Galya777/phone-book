@@ -1,99 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="phoneBookApp">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>Phone Book</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="index.css">
-
-  <!-- Libraries -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="https://code.angularjs.org/1.3.5/angular.js"></script>
-  <script src="https://code.angularjs.org/1.3.5/angular-route.js"></script>
-
-  <!-- App Logic -->
-  <script src="App.js" defer></script>
-</head>
-
-<body ng-controller="appController">
-  <div class="container">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="text-center">Phone Book</h3>
-      </div>
-
-      <!-- Search -->
-      <form>
-        <label for="search">Search</label>
-        <input id="search" type="search" pattern=".*\S.*" required ng-model="search">
-        <span class="caret"></span>
-      </form>
-
-      <!-- Row limit -->
-      <span>
-        No of contacts to show:
-        <input type="number" step="1" min="0" ng-model="rowLimit"/>
-      </span>
-    </div>
-
-    <!-- Table -->
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Names</th>
-            <th>Phone Number</th>
-            <th>E-mail</th>
-            <th>Options</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="contact in info | limitTo:rowLimit | orderBy:'name' | filter: search">
-            <td>{{contact.name}}</td>
-            <td>{{contact.phone}}</td>
-            <td>{{contact.email}}</td>
-            <td>
-              <a href="#" ng-click="removeContact($index)">
-                <span class="glyphicon glyphicon-trash"></span>
-              </a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <!-- Static Pagination -->
-      <ul class="pagination">
-        <li><a class="active">1</a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">3</a></li>
-      </ul>
-    </div>
-
-    <!-- Add contact form -->
-    <div class="panel-footer">
-      <form class="form-inline">
-        <div class="form-group">
-          <span>Name：</span>
-          <input type="text" class="form-control" ng-model="newName" maxlength="99">
-        </div>
-        <div class="form-group">
-          <span>Phone number：</span>
-          <input type="tel" class="form-control" ng-model="newPhone"
-                 ng-pattern="/^\d{2}-\d{3}-\d{4}$/" placeholder="xx-xxx-xxxx">
-        </div>
-        <div class="form-group">
-          <span>E-mail：</span>
-          <input type="email" class="form-control" ng-model="newEmail" placeholder="email@example.com">
-        </div>
-        <button class="btn btn-primary" ng-click="addContact()">
-          <span class="glyphicon glyphicon-thumbs-up"></span> Add Contact
-        </button>
-      </form>
-    </div>
-  </div>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phone Book</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
 </html>

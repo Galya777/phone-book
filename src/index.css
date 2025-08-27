@@ -154,7 +154,9 @@ th, td {
 input[type="text"],
 input[type="tel"],
 input[type="email"],
-input[type="number"] {
+input[type="number"],
+input[type="notes"],
+input[type="description"] {
   width: 100%;
   padding: 5px 8px;
   font-size: 13px;
